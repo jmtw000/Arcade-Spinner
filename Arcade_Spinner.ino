@@ -28,7 +28,7 @@
 
 #define pinA 2    //The pins that the rotary encoder's A and B terminals are connected to.
 #define pinB 3
-#define maxBut 6  //The number of buttons you are using.
+#define maxBut 6  //The number of buttons you are using up to 10.
 
 
 //Create a Joystick object.
