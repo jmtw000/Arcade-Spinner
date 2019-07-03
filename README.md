@@ -1,4 +1,4 @@
-# Arcade-Spinner v0.5
+# Arcade-Spinner v0.6
 This is an Arduino Micro (or clone) arcade spinner with 6 buttons for use with MAME or any other emulator which can use the X axis of the mouse as a paddle/spinner controller. This code should also work on any board which uses the ATmega32U4 as long as the port pins are mapped to the same "digital pins" as the Micro. I created this spinner because I wanted a cheaper alternative to the commercially available ones. I find it works well for ball and paddle games, and also makes a decent controller for driving games.
 
  To construct this you will need a 2-phase rotary encoder which can operate at 5v and some momentary switch buttons. The rotary encoder I used is: https://www.amazon.com/Signswise-Incremental-Encoder-Dc5-24v-Voltage/dp/B00UTIFCVA 
@@ -8,3 +8,15 @@ This device will be detected as both a mouse and a joystick/gamepad. The joystic
 
 The enclosure that I used can be bought at: https://www.galco.com/buy/Hammond-Manufacturing/RL6015BK
 The knob for the encoder that I used can be bought at: https://www.amazon.com/gp/product/B01D2IIC3S
+
+
+
+About the mouse movement modes:
+
+There are now 4 mouse movement modes to choose from. These control how the encoder(spinner) moves the mouse. There was originally only one mode, which is now the NORM mode. In this mode, every time the encoder is moved an interrupt routine runs which will increment/decrement a variable depending upon which direction it is moved (+ for right, - for left). In the loop() if this variable is >=2 the mouse is moved one pixel to the right. If it's <=-2 the mouse pointer is moved one pixel to the left. The variable is then decremented/incremented to reflect that we have accounted for the encoder's movement and moved the mouse in the appropriate direction. However, something strange begins to happen in this mode if the encoder is turned very fast. A USB HID mouse can only be polled at 1000Hz at most. This is one time every 1ms. If we are moving the mouse pointer 1 pixel at a time, the most we can move the mouse in 1 second is 1000 pixels. When the encoder is turned very fast the variable keeping track of it's movement can become so large that it will take a (relatively) long time to move the mouse 1 pixel at a time to catch up. The mouse can still be moving even though you have stopped turning the encoder. In DROP mode, every time the mouse is moved the variable is set back to 0 no matter how large it has grown due to the encoder movement. The mouse pointer will stop moving when you stop turning the encoder. In ACCM mode, the mouse is accellerated. It is moved half the number of pixels of the variable's value. For example, if you are turning the encoder fast to the right and the variable contains the number 1000, the mouse will be moved 500 pixels to the right. The faster you turn the encoder, that larger number of pixels the mouse is moved during each iteration through loop(). The mouse pointer will stop when the encoder stops turning. In STATE mode no variable is incremented or decremented. There is only a state variable. If the encoder is turning to the right the variable is set to 1 in the interrupt, if it's turning to the left it's set to 2. Each iteration through the loop() the state variable is checked and the mouse moved in the appropriate direction by one pixel. In this mode the mouse pointer will stop when the encoder stops turning. To chose a mode simply uncomment the #define line for that mode leaving the other ones commented out. The default mode is ACCM.
+
+
+
+7-3-2019
+
+Craig B contributed some code for optimizing button polling and for different mouse movement modes (ACCM/DROP).
