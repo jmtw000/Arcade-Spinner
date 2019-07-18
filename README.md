@@ -10,7 +10,7 @@ The enclosure that I used can be bought at: https://www.galco.com/buy/Hammond-Ma
 The knob for the encoder that I used can be bought at: https://www.amazon.com/gp/product/B01D2IIC3S
 
 
-You should now be able to use the info found at http://wiki.arcadecontrols.com/index.php/Spinner_Turn_Count to adjust the analog sensitivity in MAME to more accurately simulate the original hardware with this spinner.
+You should now be able to use the info found at http://wiki.arcadecontrols.com/index.php/Spinner_Turn_Count to adjust the analog sensitivity in MAME to more accurately simulate the original hardware with this spinner. Also, make sure to turn off mouse acceleration for this to work properly.
 
 
 
