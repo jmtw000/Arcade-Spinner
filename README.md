@@ -1,4 +1,4 @@
-# Arcade-Spinner v0.6
+# Arcade-Spinner v0.7
 This is an Arduino Micro (or clone) arcade spinner with 6 buttons (up to 10) for use with MAME or any other emulator which can use the X axis of the mouse as a paddle/spinner controller. This code should also work on any board which uses the ATmega32U4 as long as the port pins are mapped to the same "digital pins" as the Micro. I created this spinner because I wanted a cheaper alternative to the commercially available ones. I find it works well for ball and paddle games, Tempest, and also makes a decent controller for driving games.
 
  To construct this you will need a 2-phase rotary encoder which can operate at 5v and some momentary switch buttons. The rotary encoder I used is: https://www.amazon.com/Signswise-Incremental-Encoder-Dc5-24v-Voltage/dp/B00UTIFCVA 
